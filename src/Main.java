@@ -1,26 +1,25 @@
+import java.util.Random;
 
 public class Main {
 
 
 
-  public static void main(String[] args){
+	public static void main(String[] args){
 
-    double[] testArray = new double[10];  
-    testArray[0] = 1; 
-    testArray[1] = 4;
-    testArray[2] = 3.5;
-    testArray[3] = 34;
-    testArray[4] = 21;
-    testArray[5] = 45.7;
-    testArray[6] = 2;
-    testArray[7] =7;
-    testArray[8] = 3;
-    testArray[9] = 0;
+		int arrayLength = 50;
+		Random randomGeneration = new Random();
+		double[] testArray = new double[arrayLength];  
+		testArray[arrayLength -1] = 0.00;
+		testArray[arrayLength -2] = 0.00;
+		for(int i = 0; i < arrayLength -2; i ++){
+			testArray[i] = randomGeneration.nextInt(100);
+		}
 
-    ArraySort test = new ArraySort(testArray);
 
-    test.bubbleSort();
-    test.insertionSort();
-    test.selectionSort();
-  }
+		ArraySort test = new ArraySort(testArray);
+
+		test.bubbleSort();
+		test.insertionSort();
+		test.selectionSort();
+	}
 }
