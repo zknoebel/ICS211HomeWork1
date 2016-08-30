@@ -19,7 +19,8 @@ public class ArraySort {
 	 * of comparisons made between numbers in the arrays being sorted.
 	 */
 	
-	private int stepCounter = 0;
+	private int comparisonCounter = 0;
+	private int swapCounter  = 0;
 	private int arrayLength;
 	private int placeHolder = 0;
 	private double startTime;
@@ -27,25 +28,30 @@ public class ArraySort {
 	private double[] insertionOutput, bubbleOutput, selectionOutput;
 
 
-	public ArraySort(double[] inputArray){
+	public ArraySort(double[] data){
 		
-		arrayLength = inputArray.length;
+		arrayLength = data.length;
 		insertionOutput = new double[arrayLength];
 		bubbleOutput = new double[arrayLength];
 		selectionOutput = new double[arrayLength];
 
+//		insertionOutput = data;
+//		bubbleOutput = data;
+//		selectionOutput = data;
+		
 		for(int i = 0; i < arrayLength; i ++){
 			
-			insertionOutput[i] = inputArray[i];
-			bubbleOutput[i] = inputArray[i];
-			selectionOutput[i] = inputArray[i];
+			insertionOutput[i] = data[i];
+			bubbleOutput[i] = data[i];
+			selectionOutput[i] = data[i];
 		}
 	}
 
 	public void insertionSort(){
 		
 		startTime = System.nanoTime();
-		stepCounter = 0;
+		comparisonCounter = 0;
+		swapCounter = 0;
 
 		for(int i = 0; i < arrayLength -1; i ++){
 
@@ -54,15 +60,16 @@ public class ArraySort {
 			placeHolder = i;
 			
 			if(x < y){
-				stepCounter ++;
+				comparisonCounter ++;
 			}
 			
 			while(x > y){
 				
-				stepCounter ++;
+				comparisonCounter ++;
 				insertionOutput[placeHolder] = y;
 				insertionOutput[placeHolder + 1] = x;
-
+				swapCounter ++;
+				
 				if(placeHolder > 0){
 					placeHolder --;
 				}
@@ -79,18 +86,20 @@ public class ArraySort {
 	public void bubbleSort(){
 		
 		startTime = System.nanoTime();
-		stepCounter = 0;
-
+		comparisonCounter = 0;
+		swapCounter = 0;
+		
 		for(int i = 0; i < arrayLength -1; i ++){
 			
 			for(int j = 0; j < arrayLength -1; j ++){
 				
 				x = bubbleOutput[j];
 				y = bubbleOutput[j + 1];
-				stepCounter ++;
+				comparisonCounter ++;
 				
 				if(x > y){
 					
+				  swapCounter ++;
 					bubbleOutput[j] = y;
 					bubbleOutput[j + 1] = x;
 				}
@@ -104,7 +113,8 @@ public class ArraySort {
 	public void selectionSort(){
 
 		startTime = System.nanoTime();
-		stepCounter = 0;
+		comparisonCounter = 0;
+		swapCounter = 0;
 		placeHolder = 0;
 
 		for(int i = 0; i < arrayLength -1; i ++){
@@ -115,11 +125,12 @@ public class ArraySort {
 
 			for(int j = i; j < arrayLength; j ++){
 
-				stepCounter ++;
+				comparisonCounter ++;
 
 				if(y > selectionOutput[j]){
 
 					y = selectionOutput[j];
+					swapCounter ++;
 					placeHolder = j;
 				}
 			}
@@ -143,7 +154,8 @@ public class ArraySort {
 		}
 		
 		System.out.println("");
-		System.out.println("This method took " + stepCounter + " steps to complete.");
+		System.out.println("This method made " + comparisonCounter + " comparisons.");
+		System.out.println("This method made " + swapCounter + " swaps.");
 		System.out.println("This method took " + (System.nanoTime() - startTime) + " nano seconds to complete.");
 		System.out.println("");
 	}
