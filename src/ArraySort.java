@@ -12,7 +12,7 @@
  */
 
 
-public class ArraySort {
+public class ArraySort{
 
 	/*
 	 * The stepCounter integer and the printed value of "This method took... steps to complete" is referring to the number
@@ -83,6 +83,11 @@ public class ArraySort {
 	}
 
 
+//	public void insertionSort(E[] data, comparator<? super E> compare){
+//		
+//	}
+	
+	
 	public void bubbleSort(){
 		
 		startTime = System.nanoTime();
@@ -108,6 +113,11 @@ public class ArraySort {
 		
 		printResults(bubbleOutput, "Bubble Sort");
 	}
+
+
+//	public void BubbleSort(E[] data, comparator<? super E> compare){
+//		
+//	}
 
 
 	public void selectionSort(){
@@ -143,15 +153,20 @@ public class ArraySort {
 	}
 
 
+//	public void selectionSort(E[] data, comparator<? super E> compare){
+//		
+//	}
+
+
 	public void printResults(double[] arrayToBePrinted, String title){
 		
 		System.out.println(title);
 		System.out.print("The sorted array is ");
 		
-		for(int i = 0; i < arrayLength; i ++){
-			
-			System.out.print(arrayToBePrinted[i] + "  ");
-		}
+//		for(int i = 0; i < arrayLength; i ++){
+//			
+//			System.out.print(arrayToBePrinted[i] + "  ");
+//		}
 		
 		System.out.println("");
 		System.out.println("This method made " + comparisonCounter + " comparisons.");

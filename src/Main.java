@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args){
 
-		int arrayLength = 5000;
+		int arrayLength = 20000;
 		Random randomGeneration = new Random();
 		double[] testArray = new double[arrayLength];  
 		testArray[arrayLength -1] = -99.99;
