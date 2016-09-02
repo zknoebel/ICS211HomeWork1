@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 /**
  * ArraySort
  * Copyright (C) Zachery Knoebel 2016
@@ -12,13 +14,13 @@
  */
 
 
-public class ArraySort{
+public class ArraySort<E> implements Comparator<E>{
 
 	/*
 	 * The stepCounter integer and the printed value of "This method took... steps to complete" is referring to the number
 	 * of comparisons made between numbers in the arrays being sorted.
 	 */
-	
+
 	private int comparisonCounter = 0;
 	private int swapCounter  = 0;
 	private int arrayLength;
@@ -26,29 +28,34 @@ public class ArraySort{
 	private double startTime;
 	private double x, y = 0;
 	private double[] insertionOutput, bubbleOutput, selectionOutput;
+	private boolean finished = false;
 
 
 	public ArraySort(double[] data){
-		
+
 		arrayLength = data.length;
 		insertionOutput = new double[arrayLength];
 		bubbleOutput = new double[arrayLength];
 		selectionOutput = new double[arrayLength];
 
-//		insertionOutput = data;
-//		bubbleOutput = data;
-//		selectionOutput = data;
-		
 		for(int i = 0; i < arrayLength; i ++){
-			
+
 			insertionOutput[i] = data[i];
 			bubbleOutput[i] = data[i];
 			selectionOutput[i] = data[i];
 		}
 	}
 
+	public int compare(E imput0, E imput1){
+
+		return this.compare(imput0, imput1);
+	}
+
+	/*
+	 * sorts and array by looking at a number in an unsorted list and then moving it to it's numerically sorted spot
+	 */
 	public void insertionSort(){
-		
+
 		startTime = System.nanoTime();
 		comparisonCounter = 0;
 		swapCounter = 0;
@@ -58,22 +65,22 @@ public class ArraySort{
 			x = insertionOutput[i];
 			y = insertionOutput[i + 1];
 			placeHolder = i;
-			
+
 			if(x < y){
 				comparisonCounter ++;
 			}
-			
+
 			while(x > y){
-				
+
 				comparisonCounter ++;
 				insertionOutput[placeHolder] = y;
 				insertionOutput[placeHolder + 1] = x;
 				swapCounter ++;
-				
+
 				if(placeHolder > 0){
 					placeHolder --;
 				}
-				
+
 				x = insertionOutput[placeHolder];
 				y = insertionOutput[placeHolder + 1];
 
@@ -82,44 +89,59 @@ public class ArraySort{
 		printResults(insertionOutput, "Insertion Sort");
 	}
 
+	//
+	//	public void insertionSort(E[] data, comparator<? super E> compare){
+	//		
+	//	}
 
-//	public void insertionSort(E[] data, comparator<? super E> compare){
-//		
-//	}
-	
-	
+
+	/*
+	 * sorts an array of numbers by "sinking" the large numbers to the "bottom" or end of the list
+	 *  and "bubbling" the small numbers to the "top" or front of the list
+	 */
 	public void bubbleSort(){
-		
+
 		startTime = System.nanoTime();
 		comparisonCounter = 0;
 		swapCounter = 0;
-		
+
 		for(int i = 0; i < arrayLength -1; i ++){
+
+			finished = true;
 			
-			for(int j = 0; j < arrayLength -1; j ++){
+			for(int j = 0; j < arrayLength -1 - i; j ++){
 				
 				x = bubbleOutput[j];
 				y = bubbleOutput[j + 1];
 				comparisonCounter ++;
-				
+
 				if(x > y){
 					
-				  swapCounter ++;
+					finished = false;
+					swapCounter ++;
 					bubbleOutput[j] = y;
 					bubbleOutput[j + 1] = x;
 				}
 			}
+			
+			if(finished == true){
+				i = arrayLength;
+			}
 		}
-		
+
 		printResults(bubbleOutput, "Bubble Sort");
 	}
 
 
-//	public void BubbleSort(E[] data, comparator<? super E> compare){
-//		
-//	}
+	//	public void BubbleSort(E[] data, comparator<? super E> compare){
+	//		
+	//	}
 
-
+	/*
+	 * sorts an array of numbers by finding the smallest number in the array and moving it to the front
+	 * then it finds the next smallest number in the array and moves it to the next spot
+	 * this continues until the list is sorted
+	 */
 	public void selectionSort(){
 
 		startTime = System.nanoTime();
@@ -153,21 +175,23 @@ public class ArraySort{
 	}
 
 
-//	public void selectionSort(E[] data, comparator<? super E> compare){
-//		
-//	}
+	//	public void selectionSort(E[] data, comparator<? super E> compare){
+	//		
+	//	}
 
-
+	/*
+	 * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the used method
+	 */
 	public void printResults(double[] arrayToBePrinted, String title){
-		
+
 		System.out.println(title);
 		System.out.print("The sorted array is ");
-		
-//		for(int i = 0; i < arrayLength; i ++){
-//			
-//			System.out.print(arrayToBePrinted[i] + "  ");
-//		}
-		
+
+		for(int i = 0; i < arrayLength; i ++){
+
+			System.out.print(arrayToBePrinted[i] + "  ");
+		}
+
 		System.out.println("");
 		System.out.println("This method made " + comparisonCounter + " comparisons.");
 		System.out.println("This method made " + swapCounter + " swaps.");
