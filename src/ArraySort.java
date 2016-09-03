@@ -20,7 +20,7 @@ public class ArraySort<E>{
   private long swapCount;
   private long sortTime;
   private boolean finished = false;
-  private E a;
+  private E e;
   private E[] bubbleOutput, insertionOutput, selectionOutput;
   
   public ArraySort(){
@@ -51,9 +51,9 @@ public class ArraySort<E>{
 	        compareCount ++;
 	        swapCount ++;
 	        
-	        a = insertionOutput[placeHolder];
+	        e = insertionOutput[placeHolder];
 	        insertionOutput[placeHolder] = insertionOutput[placeHolder + 1];
-	        insertionOutput[placeHolder + 1] = a;
+	        insertionOutput[placeHolder + 1] = e;
 	
 	        if(placeHolder > 0){
 	          placeHolder --;
@@ -93,9 +93,9 @@ public class ArraySort<E>{
 
           finished = false;
           swapCount ++;
-          a = bubbleOutput[j];
+          e = bubbleOutput[j];
           bubbleOutput[j] = bubbleOutput[j + 1];
-          bubbleOutput[j + 1] = a;
+          bubbleOutput[j + 1] = e;
         }
       }
 
@@ -129,23 +129,23 @@ public class ArraySort<E>{
 
     for(int i = 0; i < selectionOutput.length -1; i ++){
 
-      a = selectionOutput[i];
+      e = selectionOutput[i];
       placeHolder = i;
 
       for(int j = i; j < selectionOutput.length; j ++){
 
         compareCount ++;
 
-        if(compare.compare(a, selectionOutput[j]) > 0){
+        if(compare.compare(e, selectionOutput[j]) > 0){
 
-          a = selectionOutput[j];
+          e = selectionOutput[j];
           swapCount ++;
           placeHolder = j;
         }
       }
 
       selectionOutput[placeHolder] = selectionOutput[i];
-      selectionOutput[i] = a;
+      selectionOutput[i] = e;
     }
 
     sortTime = System.nanoTime() - startTime;
