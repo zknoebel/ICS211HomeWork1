@@ -19,6 +19,6 @@ public class Main{
 		
 		test.bubbleSort(testArray, comp);
 		test.insertionSort(testArray, comp);
-//		test.selectionSort(testArray, comp);
+		test.selectionSort(testArray, comp);
 	}
 }

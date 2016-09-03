@@ -14,17 +14,13 @@ import java.util.Comparator;
  */
 public class ArraySort<E>{
 
-  private int comparisonCounter = 0;
-  private int swapCounter  = 0;
-  private int arrayLength;
   private int placeHolder = 0;
   private long startTime;
-  private double x, y = 0;
   private long compareCount;
   private long swapCount;
   private long sortTime;
   private boolean finished = false;
-  private E a, b;
+  private E a;
   private E[] bubbleOutput, insertionOutput, selectionOutput;
   
   public ArraySort(){
@@ -50,10 +46,6 @@ public class ArraySort<E>{
 	
 	      placeHolder = i;
 	
-	      if(compare.compare(insertionOutput[i], insertionOutput[i + 1]) <= 0){
-	        compareCount ++;
-	      }
-	
 	      while(compare.compare(insertionOutput[placeHolder], insertionOutput[placeHolder + 1]) > 0){
 	
 	        compareCount ++;
@@ -67,6 +59,7 @@ public class ArraySort<E>{
 	          placeHolder --;
 	        }
 	      }
+	      compareCount ++;
 	    }
 	    
 	    sortTime = System.nanoTime() - startTime;
@@ -117,6 +110,7 @@ public class ArraySort<E>{
     
   }
 
+  
   /*
    * sorts an array of numbers by finding the smallest number in the array and moving it to the front
    * then it finds the next smallest number in the array and moves it to the next spot
@@ -124,50 +118,46 @@ public class ArraySort<E>{
    * @param data: the unsorted array
    * @param compare: a comparator made for the specific type to be sorted
    */
-//  public void selectionSort(){
-//
-//    startTime = System.nanoTime();
-//    comparisonCounter = 0;
-//    swapCounter = 0;
-//    placeHolder = 0;
-//
-//    for(int i = 0; i < arrayLength -1; i ++){
-//
-//      x = selectionOutput[i];
-//      y = selectionOutput[i];
-//      placeHolder = i;
-//
-//      for(int j = i; j < arrayLength; j ++){
-//
-//        comparisonCounter ++;
-//
-//        if(y > selectionOutput[j]){
-//
-//          y = selectionOutput[j];
-//          swapCounter ++;
-//          placeHolder = j;
-//        }
-//      }
-//
-//      selectionOutput[i] = y;
-//      selectionOutput[placeHolder] = x;
-//    }
-//
-//    printResults(selectionOutput, "Selection Sort");
-//  }
-
-
   public void selectionSort(E[] data, Comparator<? super E> compare){
 
-	  
 
-	    sortTime = System.nanoTime() - startTime;
+    startTime = System.nanoTime();
+    compareCount = 0;
+    swapCount = 0;
+    placeHolder = 0;
+    selectionOutput = data.clone();
+
+    for(int i = 0; i < selectionOutput.length -1; i ++){
+
+      a = selectionOutput[i];
+      placeHolder = i;
+
+      for(int j = i; j < selectionOutput.length; j ++){
+
+        compareCount ++;
+
+        if(compare.compare(a, selectionOutput[j]) > 0){
+
+          a = selectionOutput[j];
+          swapCount ++;
+          placeHolder = j;
+        }
+      }
+
+      selectionOutput[placeHolder] = selectionOutput[i];
+      selectionOutput[i] = a;
+    }
+
+    sortTime = System.nanoTime() - startTime;
+    printResults(selectionOutput, "Selection Sort");
+
   }
 
+  
   /*
-   * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the used method
+   * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the
+   *  used method
    */
-//  public void printResults(double[] arrayToBePrinted, String title){
     public void printResults(E[] arrayToBePrinted, String title){
 
     System.out.println(title);
@@ -185,13 +175,16 @@ public class ArraySort<E>{
     System.out.println("");
   }
 
+    
   public long getSortTime(){
     return sortTime;
   }
 
+  
   public long getCompareCount(){
     return compareCount;
   }
+  
   
   public long getSwapCount(){
     return swapCount;
