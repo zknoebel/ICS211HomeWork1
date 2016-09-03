@@ -1,7 +1,7 @@
+import java.util.Comparator;
 import java.util.Random;
 
-public class Main {
-
+public class Main<E> {
 
 
 	public static void main(String[] args){

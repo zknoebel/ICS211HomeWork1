@@ -16,186 +16,238 @@ import java.util.Comparator;
 
 public class ArraySort<E> implements Comparator<E>{
 
-	/*
-	 * The stepCounter integer and the printed value of "This method took... steps to complete" is referring to the number
-	 * of comparisons made between numbers in the arrays being sorted.
-	 */
+  /*
+   * The stepCounter integer and the printed value of "This method took... steps to complete" is referring to the number
+   * of comparisons made between numbers in the arrays being sorted.
+   */
 
-	private int comparisonCounter = 0;
-	private int swapCounter  = 0;
-	private int arrayLength;
-	private int placeHolder = 0;
-	private double startTime;
-	private double x, y = 0;
-	private double[] insertionOutput, bubbleOutput, selectionOutput;
-	private boolean finished = false;
-
-
-	public ArraySort(double[] data){
-
-		arrayLength = data.length;
-		insertionOutput = new double[arrayLength];
-		bubbleOutput = new double[arrayLength];
-		selectionOutput = new double[arrayLength];
-
-		for(int i = 0; i < arrayLength; i ++){
-
-			insertionOutput[i] = data[i];
-			bubbleOutput[i] = data[i];
-			selectionOutput[i] = data[i];
-		}
-	}
-
-	public int compare(E imput0, E imput1){
-
-		return this.compare(imput0, imput1);
-	}
-
-	/*
-	 * sorts and array by looking at a number in an unsorted list and then moving it to it's numerically sorted spot
-	 */
-	public void insertionSort(){
-
-		startTime = System.nanoTime();
-		comparisonCounter = 0;
-		swapCounter = 0;
-
-		for(int i = 0; i < arrayLength -1; i ++){
-
-			x = insertionOutput[i];
-			y = insertionOutput[i + 1];
-			placeHolder = i;
-
-			if(x < y){
-				comparisonCounter ++;
-			}
-
-			while(x > y){
-
-				comparisonCounter ++;
-				insertionOutput[placeHolder] = y;
-				insertionOutput[placeHolder + 1] = x;
-				swapCounter ++;
-
-				if(placeHolder > 0){
-					placeHolder --;
-				}
-
-				x = insertionOutput[placeHolder];
-				y = insertionOutput[placeHolder + 1];
-
-			}
-		}
-		printResults(insertionOutput, "Insertion Sort");
-	}
-
-	//
-	//	public void insertionSort(E[] data, comparator<? super E> compare){
-	//		
-	//	}
+  private int comparisonCounter = 0;
+  private int swapCounter  = 0;
+  private int arrayLength;
+  private int placeHolder = 0;
+  private double startTime;
+  private double x, y = 0;
+  private double[] insertionOutput, bubbleOutput, selectionOutput;
+  private long compareCount;
+  private long swapCount;
+  private long sortTime;
+  private boolean finished = false;
+  private E a, b;
 
 
-	/*
-	 * sorts an array of numbers by "sinking" the large numbers to the "bottom" or end of the list
-	 *  and "bubbling" the small numbers to the "top" or front of the list
-	 */
-	public void bubbleSort(){
+  public ArraySort(double[] data){
 
-		startTime = System.nanoTime();
-		comparisonCounter = 0;
-		swapCounter = 0;
+    arrayLength = data.length;
+    insertionOutput = new double[arrayLength];
+    bubbleOutput = new double[arrayLength];
+    selectionOutput = new double[arrayLength];
 
-		for(int i = 0; i < arrayLength -1; i ++){
+    for(int i = 0; i < arrayLength; i ++){
 
-			finished = true;
-			
-			for(int j = 0; j < arrayLength -1 - i; j ++){
-				
-				x = bubbleOutput[j];
-				y = bubbleOutput[j + 1];
-				comparisonCounter ++;
+      insertionOutput[i] = data[i];
+      bubbleOutput[i] = data[i];
+      selectionOutput[i] = data[i];
+    }
+  }
 
-				if(x > y){
-					
-					finished = false;
-					swapCounter ++;
-					bubbleOutput[j] = y;
-					bubbleOutput[j + 1] = x;
-				}
-			}
-			
-			if(finished == true){
-				i = arrayLength;
-			}
-		}
+  public int compare(E imput0, E imput1){
 
-		printResults(bubbleOutput, "Bubble Sort");
-	}
+    return this.compare(imput0, imput1);
+  }
 
+  /*
+   * sorts and array by looking at a number in an unsorted list and then moving it to it's numerically sorted spot
+   */
+  public void insertionSort(){
 
-	//	public void BubbleSort(E[] data, comparator<? super E> compare){
-	//		
-	//	}
+    startTime = System.nanoTime();
+    comparisonCounter = 0;
+    swapCounter = 0;
 
-	/*
-	 * sorts an array of numbers by finding the smallest number in the array and moving it to the front
-	 * then it finds the next smallest number in the array and moves it to the next spot
-	 * this continues until the list is sorted
-	 */
-	public void selectionSort(){
+    for(int i = 0; i < arrayLength -1; i ++){
 
-		startTime = System.nanoTime();
-		comparisonCounter = 0;
-		swapCounter = 0;
-		placeHolder = 0;
+      x = insertionOutput[i];
+      y = insertionOutput[i + 1];
+      placeHolder = i;
 
-		for(int i = 0; i < arrayLength -1; i ++){
+      if(x < y){
+        comparisonCounter ++;
+      }
 
-			x = selectionOutput[i];
-			y = selectionOutput[i];
-			placeHolder = i;
+      while(x > y){
 
-			for(int j = i; j < arrayLength; j ++){
+        comparisonCounter ++;
+        insertionOutput[placeHolder] = y;
+        insertionOutput[placeHolder + 1] = x;
+        swapCounter ++;
 
-				comparisonCounter ++;
+        if(placeHolder > 0){
+          placeHolder --;
+        }
 
-				if(y > selectionOutput[j]){
+        x = insertionOutput[placeHolder];
+        y = insertionOutput[placeHolder + 1];
 
-					y = selectionOutput[j];
-					swapCounter ++;
-					placeHolder = j;
-				}
-			}
-
-			selectionOutput[i] = y;
-			selectionOutput[placeHolder] = x;
-		}
-
-		printResults(selectionOutput, "Selection Sort");
-	}
+      }
+    }
+    printResults(insertionOutput, "Insertion Sort");
+  }
 
 
-	//	public void selectionSort(E[] data, comparator<? super E> compare){
-	//		
-	//	}
+  public void insertionSort(E[] data, Comparator<? super E> compare){
 
-	/*
-	 * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the used method
-	 */
-	public void printResults(double[] arrayToBePrinted, String title){
+  }
 
-		System.out.println(title);
-		System.out.print("The sorted array is ");
 
-		for(int i = 0; i < arrayLength; i ++){
+  /*
+   * sorts an array of numbers by "sinking" the large numbers to the "bottom" or end of the list
+   *  and "bubbling" the small numbers to the "top" or front of the list
+   */
+  public void bubbleSort(){
 
-			System.out.print(arrayToBePrinted[i] + "  ");
-		}
+    startTime = System.nanoTime();
+    comparisonCounter = 0;
+    swapCounter = 0;
 
-		System.out.println("");
-		System.out.println("This method made " + comparisonCounter + " comparisons.");
-		System.out.println("This method made " + swapCounter + " swaps.");
-		System.out.println("This method took " + (System.nanoTime() - startTime) + " nano seconds to complete.");
-		System.out.println("");
-	}
+    for(int i = 0; i < arrayLength -1; i ++){
+
+      finished = true;
+
+      for(int j = 0; j < arrayLength -1 - i; j ++){
+
+        x = bubbleOutput[j];
+        y = bubbleOutput[j + 1];
+        comparisonCounter ++;
+
+        if(x > y){
+
+          finished = false;
+          swapCounter ++;
+          bubbleOutput[j] = y;
+          bubbleOutput[j + 1] = x;
+        }
+      }
+
+      if(finished == true){
+        i = arrayLength;
+      }
+    }
+
+    printResults(bubbleOutput, "Bubble Sort");
+  }
+
+
+  public void BubbleSort(E[] data, Comparator<? super E> compare){
+
+
+    startTime = System.nanoTime();
+    comparisonCounter = 0;
+    swapCounter = 0;
+
+    for(int i = 0; i < data.length -1; i ++){
+
+      finished = true;
+
+      for(int j = 0; j < data.length -1 - i; j ++){
+
+        a = data[j];
+        b = data[j + 1];
+        comparisonCounter ++;
+
+        if(compare.compare(a, b) > 0){
+
+          finished = false;
+          swapCounter ++;
+          data[j] = b;
+          data[j + 1] = a;
+        }
+      }
+
+      if(finished == true){
+        i = data.length;
+      }
+    }
+
+    printResults(data, "Bubble Sort");    
+    
+    
+  }
+
+  /*
+   * sorts an array of numbers by finding the smallest number in the array and moving it to the front
+   * then it finds the next smallest number in the array and moves it to the next spot
+   * this continues until the list is sorted
+   */
+  public void selectionSort(){
+
+    startTime = System.nanoTime();
+    comparisonCounter = 0;
+    swapCounter = 0;
+    placeHolder = 0;
+
+    for(int i = 0; i < arrayLength -1; i ++){
+
+      x = selectionOutput[i];
+      y = selectionOutput[i];
+      placeHolder = i;
+
+      for(int j = i; j < arrayLength; j ++){
+
+        comparisonCounter ++;
+
+        if(y > selectionOutput[j]){
+
+          y = selectionOutput[j];
+          swapCounter ++;
+          placeHolder = j;
+        }
+      }
+
+      selectionOutput[i] = y;
+      selectionOutput[placeHolder] = x;
+    }
+
+    printResults(selectionOutput, "Selection Sort");
+  }
+
+
+  public void selectionSort(E[] data, Comparator<? super E> compare){
+
+  }
+
+  /*
+   * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the used method
+   */
+  public void printResults(double[] arrayToBePrinted, String title){
+//    public void printResults(E[] arrayToBePrinted, String title){
+
+    System.out.println(title);
+    System.out.print("The sorted array is ");
+
+    for(int i = 0; i < arrayLength; i ++){
+
+      System.out.print(arrayToBePrinted[i] + "  ");
+    }
+
+    System.out.println("");
+//    System.out.println("This method made " + getCompareCount() + " comparisons.");
+    System.out.println("This method made " + comparisonCounter + " comparisons.");
+//    System.out.println("This method made " + getSwapCount() + " swaps.");
+    System.out.println("This method made " + swapCounter + " swaps.");
+//    System.out.println("This method took " + (getSortTime()) + " nano seconds to complete.");    
+    System.out.println("This method took " + (System.nanoTime() - startTime) + " nano seconds to complete.");
+    System.out.println("");
+  }
+
+  public long getSortTime(){
+    return sortTime;
+  }
+
+  public long getCompareCount(){
+    return compareCount;
+  }
+  
+  public long getSwapCount(){
+    return swapCount;
+  }
 }
