@@ -12,8 +12,6 @@ import java.util.Comparator;
  * @author Zachery Knoebel
  *
  */
-
-
 public class ArraySort<E>{
 
   /*
