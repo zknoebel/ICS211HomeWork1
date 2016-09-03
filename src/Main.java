@@ -18,7 +18,7 @@ public class Main{
 		ArraySort test = new ArraySort();
 		
 		test.bubbleSort(testArray, comp);
-//		test.insertionSort(testArray, comp);
+		test.insertionSort(testArray, comp);
 //		test.selectionSort(testArray, comp);
 	}
 }
