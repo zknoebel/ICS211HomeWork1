@@ -25,3 +25,12 @@ Worst Case: O(n^2)
 OVERALL ANALYSIS
 	The bubble and insertion sorts both have the same potential for shortest run time during a best case scenario, however the selection
 	sort will typically run faster, because on average it will not have to perform as many swaps as the other two.
+	
+	After running the sorts on an array of length 5000, 1000 times each with a new random array each time, the average run times came
+	out to be...
+	
+	Bubble sort:    1.331 seconds
+	
+	Insertion sort: 0.549 seconds
+	
+	Selection sort: 0.259 seconds

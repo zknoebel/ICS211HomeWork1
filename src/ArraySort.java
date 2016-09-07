@@ -64,7 +64,7 @@ public class ArraySort<E>{
 		}
 
 		sortTime = System.nanoTime() - startTime;
-		printResults(bubbleOutput, "Bubble Sort");    
+//		printResults(bubbleOutput, "Bubble Sort");    
 
 
 	}
@@ -121,7 +121,7 @@ public class ArraySort<E>{
 		}
 
 		sortTime = System.nanoTime() - startTime;
-		printResults(insertionOutput, "Insertion Sort");
+//		printResults(insertionOutput, "Insertion Sort");
 	}
 
 
@@ -185,7 +185,7 @@ public class ArraySort<E>{
 		}
 
 		sortTime = System.nanoTime() - startTime;
-		printResults(selectionOutput, "Selection Sort");
+//		printResults(selectionOutput, "Selection Sort");
 
 	}
 }
