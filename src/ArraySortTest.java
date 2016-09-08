@@ -34,7 +34,7 @@ public class ArraySortTest {
     as.bubbleSort(tmpArr, icmp);    
     checkOrder(tmpArr);
 
-    /*
+    
     // Test selection sort...
     tmpArr = ia.clone();
     as.selectionSort(tmpArr, icmp);   
@@ -43,7 +43,7 @@ public class ArraySortTest {
     tmpArr = ia.clone();
     as.insertionSort(tmpArr, icmp);   
     checkOrder(tmpArr);
-     */
+     
   }
 
   @Test
@@ -58,7 +58,15 @@ public class ArraySortTest {
     as.bubbleSort(tmpArr, icmp);    
     checkOrder(tmpArr);
 
-    // Repeat with insertion and selection sort.
+    // Test insertion sort...
+    tmpArr = ia.clone();
+    as.insertionSort(tmpArr, icmp);    
+    checkOrder(tmpArr);
+    
+    // Test selection sort...
+    tmpArr = ia.clone();
+    as.selectionSort(tmpArr, icmp);    
+    checkOrder(tmpArr);
   }
 
 
