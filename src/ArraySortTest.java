@@ -1,10 +1,8 @@
 import static org.junit.Assert.*;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import org.junit.Test;
 
 class IntComparator implements Comparator<Integer> {
@@ -15,66 +13,66 @@ class IntComparator implements Comparator<Integer> {
 
 public class ArraySortTest {
 
-
   static void checkOrder(Integer[] arr) {
     for (int i = 0; i < arr.length - 1; i++) {
-      assertTrue(arr[i] <= arr[i+1]);
-    }   
+      assertTrue(arr[i] <= arr[i + 1]);
+    }
   }
+
 
   @Test
   public void testSimple() {
-    ArraySort<Integer>  as = new ArraySort<>();
-    Integer[]     ia = {10, 2, 20, 1, 30, 3};
-    Integer[]     tmpArr;
-    IntComparator   icmp = new IntComparator();
+    ArraySort<Integer> as = new ArraySort<>();
+    Integer[] ia = { 10, 2, 20, 1, 30, 3 };
+    Integer[] tmpArr;
+    IntComparator icmp = new IntComparator();
 
     // Test bubble sort...
     tmpArr = ia.clone();
-    as.bubbleSort(tmpArr, icmp);    
+    as.bubbleSort(tmpArr, icmp);
     checkOrder(tmpArr);
 
-    
     // Test selection sort...
     tmpArr = ia.clone();
-    as.selectionSort(tmpArr, icmp);   
+    as.selectionSort(tmpArr, icmp);
     checkOrder(tmpArr);
     // Test insertion sort...
     tmpArr = ia.clone();
-    as.insertionSort(tmpArr, icmp);   
+    as.insertionSort(tmpArr, icmp);
     checkOrder(tmpArr);
-     
+
   }
+
 
   @Test
   public void testDuplicates() {
-    ArraySort<Integer>  as = new ArraySort<>();
-    Integer[]     ia = {-3, 2, -3, 1, 30, -3};
-    Integer[]     tmpArr;
-    IntComparator   icmp = new IntComparator();
+    ArraySort<Integer> as = new ArraySort<>();
+    Integer[] ia = { -3, 2, -3, 1, 30, -3 };
+    Integer[] tmpArr;
+    IntComparator icmp = new IntComparator();
 
     // Test bubble sort...
     tmpArr = ia.clone();
-    as.bubbleSort(tmpArr, icmp);    
+    as.bubbleSort(tmpArr, icmp);
     checkOrder(tmpArr);
 
     // Test insertion sort...
     tmpArr = ia.clone();
-    as.insertionSort(tmpArr, icmp);    
+    as.insertionSort(tmpArr, icmp);
     checkOrder(tmpArr);
-    
+
     // Test selection sort...
     tmpArr = ia.clone();
-    as.selectionSort(tmpArr, icmp);    
+    as.selectionSort(tmpArr, icmp);
     checkOrder(tmpArr);
   }
 
 
   @Test
   public void testBubbleSingle() {
-    ArraySort<Integer>  as = new ArraySort<>();
-    IntComparator   icmp = new IntComparator();
-    Integer[]     ia = {10};    
+    ArraySort<Integer> as = new ArraySort<>();
+    IntComparator icmp = new IntComparator();
+    Integer[] ia = { 10 };
 
     as.bubbleSort(ia, icmp);
     assertTrue(ia[0] == 10);
@@ -86,11 +84,12 @@ public class ArraySortTest {
     assertTrue(ia[0] == 10);
   }
 
+
   @Test
   public void testBig() {
-    List<Integer>     ilist = new ArrayList<Integer>();
-    ArraySort<Integer>  as = new ArraySort<>();
-    Integer[]     ia;
+    List<Integer> ilist = new ArrayList<Integer>();
+    ArraySort<Integer> as = new ArraySort<>();
+    Integer[] ia;
 
     for (int i = -1000; i < 1000; i++) {
       ilist.add(i);
@@ -106,13 +105,14 @@ public class ArraySortTest {
     // Repeat for insertion and selection sort.
   }
 
+
   @Test
   public void testSortCounts() {
-    ArraySort<Integer>  as = new ArraySort<>();
-    IntComparator   icmp = new IntComparator();
-    Integer[]     ia1 = {1, 2, 3, 4, 5};
-    Integer[]     ia2 = {10, 2, 3, 4, 5};
-    Integer[]     tmpArr;
+    ArraySort<Integer> as = new ArraySort<>();
+    IntComparator icmp = new IntComparator();
+    Integer[] ia1 = { 1, 2, 3, 4, 5 };
+    Integer[] ia2 = { 10, 2, 3, 4, 5 };
+    Integer[] tmpArr;
 
     as.bubbleSort(ia1, icmp);
     assertEquals(0, as.getSwapCount());

@@ -1,18 +1,17 @@
 import java.util.Comparator;
 
 /**
- * ArraySort
- * Copyright (C) Zachery Knoebel 2016
+ * ArraySort Copyright (C) Zachery Knoebel 2016
  */
 
 /*
- * ArraySort: This program sorts an array with insertion sort, bubble sort and selection sort. Then it
- * prints out the sorted array along with the time and number of steps it took to do this
+ * ArraySort: This program sorts an array with insertion sort, bubble sort and selection sort. Then it prints out the
+ * sorted array along with the time and number of steps it took to do this
  *
  * @author Zachery Knoebel
  *
  */
-public class ArraySort<E>{
+public class ArraySort<E> {
 
   private boolean finished = false;
   private E e;
@@ -20,117 +19,120 @@ public class ArraySort<E>{
   private long compareCount, swapCount;
   private long sortTime, startTime;
 
-  public ArraySort(){
+
+  public ArraySort() {
   }
 
 
   /*
-   * sorts an array of numbers by "sinking" the large numbers to the "bottom" or end of the list
-   *  and "bubbling" the small numbers to the "top" or front of the list
+   * sorts an array of numbers by "sinking" the large numbers to the "bottom" or end of the list and "bubbling" the
+   * small numbers to the "top" or front of the list
+   * 
    * @param data: the unsorted array
+   * 
    * @param compare: a comparator made for the specific type to be sorted
    */
-  public void bubbleSort(E[] data, Comparator<? super E> compare){
+  public void bubbleSort(E[] data, Comparator<? super E> compare) {
 
     sortTime = 0;
     startTime = System.nanoTime();
     compareCount = 0;
     swapCount = 0;
 
-    for(int i = 0; i < data.length -1; i ++){
+    for (int i = 0; i < data.length - 1; i++) {
 
       finished = true;
 
-      for(int j = 0; j < data.length -1 - i; j ++){
+      for (int j = 0; j < data.length - 1 - i; j++) {
 
-        compareCount ++;
+        compareCount++;
 
-        if(compare.compare(data[j], data[j + 1]) > 0){
-
+        if (compare.compare(data[j], data[j + 1]) > 0) {
 
           finished = false;
-          swapCount ++;
+          swapCount++;
           e = data[j];
           data[j] = data[j + 1];
           data[j + 1] = e;
         }
       }
 
-      if(finished == true){
+      if (finished == true) {
         break;
       }
     }
 
     sortTime = System.nanoTime() - startTime;
-//    		printResults(data, "Bubble Sort");    
-
+    // printResults(data, "Bubble Sort");
 
   }
 
 
-  public long getCompareCount(){
+  public long getCompareCount() {
     return compareCount;
   }
 
 
-  public long getSortTime(){
+  public long getSortTime() {
     return sortTime;
   }
 
 
-  public long getSwapCount(){
+  public long getSwapCount() {
     return swapCount;
   }
 
+
   /*
-   * sorts an array by looking at a number in an unsorted array and then moving it to it's numerically sorted spot
-   * then it moves to the next number in the array and does the same over and over again until it gets to the end 
-   * of the list
+   * sorts an array by looking at a number in an unsorted array and then moving it to it's numerically sorted spot then
+   * it moves to the next number in the array and does the same over and over again until it gets to the end of the list
+   * 
    * @param data: the unsorted array
+   * 
    * @param compare: a comparator made for the specific type to be sorted
    */
-  public void insertionSort(E[] data, Comparator<? super E> compare){
+  public void insertionSort(E[] data, Comparator<? super E> compare) {
 
     sortTime = 0;
     startTime = System.nanoTime();
     compareCount = 0;
     swapCount = 0;
 
-    for(int i = 0; i < data.length -1; i ++){
+    for (int i = 0; i < data.length - 1; i++) {
 
       placeHolder = i;
 
-      while(compare.compare(data[placeHolder], data[placeHolder + 1]) > 0){
+      while (compare.compare(data[placeHolder], data[placeHolder + 1]) > 0) {
 
-        compareCount ++;
-        swapCount ++;
+        compareCount++;
+        swapCount++;
 
         e = data[placeHolder];
         data[placeHolder] = data[placeHolder + 1];
         data[placeHolder + 1] = e;
 
-        if(placeHolder > 0){
-          placeHolder --;
+        if (placeHolder > 0) {
+          placeHolder--;
         }
       }
-      compareCount ++;
+      compareCount++;
     }
 
     sortTime = System.nanoTime() - startTime;
-//    		printResults(data, "Insertion Sort");
+    // printResults(data, "Insertion Sort");
   }
 
 
   /*
-   * prints out the name of the sort used, the sorted array(if uncommented), time and number of comparisons and swaps made for the
-   *  used method
+   * prints out the name of the sort used, the sorted array(if uncommented), time and number of comparisons and swaps
+   * made for the used method
    */
-  public void printResults(E[] arrayToBePrinted, String title){
+  public void printResults(E[] arrayToBePrinted, String title) {
 
     System.out.println(title);
     System.out.print("The sorted array is ");
 
-    for(int i = 0; i < arrayToBePrinted.length; i ++){
+    for (int i = 0; i < arrayToBePrinted.length; i++) {
 
       System.out.print(arrayToBePrinted[i] + "  ");
     }
@@ -138,39 +140,39 @@ public class ArraySort<E>{
     System.out.println("");
     System.out.println("This method made " + compareCount + " comparisons.");
     System.out.println("This method made " + swapCount + " swaps.");
-    System.out.println("This method took " + sortTime + " nano seconds to complete.");    
+    System.out.println("This method took " + sortTime + " nano seconds to complete.");
     System.out.println("");
   }
 
 
   /*
-   * sorts an array of numbers by finding the smallest number in the array and moving it to the front
-   * then it finds the next smallest number in the array and moves it to the next spot
-   * this continues until the list is sorted
+   * sorts an array of numbers by finding the smallest number in the array and moving it to the front then it finds the
+   * next smallest number in the array and moves it to the next spot this continues until the list is sorted
+   * 
    * @param data: the unsorted array
+   * 
    * @param compare: a comparator made for the specific type to be sorted
    */
-  public void selectionSort(E[] data, Comparator<? super E> compare){
-
+  public void selectionSort(E[] data, Comparator<? super E> compare) {
 
     startTime = System.nanoTime();
     compareCount = 0;
     swapCount = 0;
     placeHolder = 0;
 
-    for(int i = 0; i < data.length -1; i ++){
+    for (int i = 0; i < data.length - 1; i++) {
 
       e = data[i];
       placeHolder = i;
 
-      for(int j = i; j < data.length; j ++){
+      for (int j = i; j < data.length; j++) {
 
-        compareCount ++;
+        compareCount++;
 
-        if(compare.compare(e, data[j]) > 0){
+        if (compare.compare(e, data[j]) > 0) {
 
           e = data[j];
-          swapCount ++;
+          swapCount++;
           placeHolder = j;
         }
       }
@@ -180,7 +182,5 @@ public class ArraySort<E>{
     }
 
     sortTime = System.nanoTime() - startTime;
-    		printResults(data, "Selection Sort");
-
   }
 }
