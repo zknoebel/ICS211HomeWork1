@@ -1,5 +1,7 @@
 ArraySort
 
+@author Zachery Knoebel
+
 Runtime analysis 
 
 BUBBLE SORT
@@ -26,7 +28,12 @@ OVERALL ANALYSIS
 	The bubble and insertion sorts both have the same potential for shortest run time during a best case scenario, however the selection
 	sort will typically run faster, because on average it will not have to perform as many swaps as the other two.
 	
-	After running the sorts on an array of length 5000, 1000 times each with a new random array each time, the average run times came
+	After running the "bigO" methods in the main method, the fact that the "big O" of each sort is n^2 is quite apparent.
+	As each array length is raised by one power of ten, the run times increase by about two powers of ten (take about 100 times longer).
+	
+	After running the avgTest method (average run time test) in the main method. It shows that Bubble Sort is typically the least 
+	efficient, Insertion Sort is in the middle and Selection sort is the most efficient. 
+	The avtTest runs the sorts on an array of length 5000, 1000 times each with a new random array each time, the average run times came
 	out to be...
 	
 	Bubble sort:    1.331 seconds
@@ -34,3 +41,7 @@ OVERALL ANALYSIS
 	Insertion sort: 0.549 seconds
 	
 	Selection sort: 0.259 seconds
+	
+	
+	To answer the question; What if the arrays have null in them? The program will give an error of null pointer exception. In this
+	program, that is fine, because the arrays are not supposed to have null values.

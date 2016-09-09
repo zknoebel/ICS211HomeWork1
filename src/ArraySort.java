@@ -2,14 +2,10 @@ import java.util.Comparator;
 
 /**
  * ArraySort Copyright (C) Zachery Knoebel 2016
- */
-
-/*
- * ArraySort: This program sorts an array with insertion sort, bubble sort and selection sort. Then it prints out the
- * sorted array along with the time and number of steps it took to do this
- *
- * @author Zachery Knoebel
- *
+ * 
+ * ArraySort: This class provides the user with the ability to sort arrays using bubble sort, insertion sort and
+ * selection sort. It also gives the user the ability to print out the sorted array, number of comparisons made, number
+ * of swaps made and the time it took to run the sort method.
  */
 public class ArraySort<E> {
 
@@ -68,16 +64,25 @@ public class ArraySort<E> {
   }
 
 
+  /*
+   * returns the number of comparisons that were made by the sort method that ran last
+   */
   public long getCompareCount() {
     return compareCount;
   }
 
 
+  /*
+   * returns the amount time it took for the most recently run sort method to run.
+   */
   public long getSortTime() {
     return sortTime;
   }
 
 
+  /*
+   * returns the amount of swaps that were made by the sort method that ran last
+   */
   public long getSwapCount() {
     return swapCount;
   }
@@ -124,8 +129,8 @@ public class ArraySort<E> {
 
 
   /*
-   * prints out the name of the sort used, the sorted array(if uncommented), time and number of comparisons and swaps
-   * made for the used method
+   * prints out the name of the sort used, the sorted array, time and number of comparisons and swaps made for the used
+   * sort method
    */
   public void printResults(E[] arrayToBePrinted, String title) {
 
