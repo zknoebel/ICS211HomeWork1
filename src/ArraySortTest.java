@@ -164,7 +164,23 @@ public class ArraySortTest {
     as.bubbleSort(tmpArr, icmp);
     assertTrue(as.getSwapCount() >= 4);
     assertTrue(as.getCompareCount() >= 0);
+    
+    tmpArr = ia1.clone();
+    as.insertionSort(tmpArr, icmp);
+    assertEquals(0, as.getSwapCount());
 
-    // Repeat with insertion and selection sort.
+    tmpArr = ia2.clone();
+    as.insertionSort(tmpArr, icmp);
+    assertTrue(as.getSwapCount() >= 4);
+    assertTrue(as.getCompareCount() >= 0);
+
+    tmpArr = ia1.clone();
+    as.selectionSort(tmpArr, icmp);
+    assertEquals(0, as.getSwapCount());
+
+    tmpArr = ia2.clone();
+    as.selectionSort(tmpArr, icmp);
+    assertTrue(as.getSwapCount() >= 4);
+    assertTrue(as.getCompareCount() >= 0);
   }
 }
