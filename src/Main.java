@@ -18,7 +18,8 @@ public class Main {
     tester.bigOBubTest();
     tester.bigOInsTest();
     tester.bigOSelTest();
-    tester.avgTest();
+//    avgTest takes a couple minutes depending on how fast your computer is
+//    tester.avgTest();
 
   }
 
@@ -163,7 +164,7 @@ public class Main {
   /*
    * used to create on object of Main so the methods other than main can be used
    */
-  void Main() {
+  Main() {
 
   }
 }
